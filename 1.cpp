@@ -11,6 +11,8 @@ int toSeven(int arg)
 {
     int reversedNumber = 0, remainder;
     int res = -1;
+    if(arg <= 7)
+        return arg;
     while(arg != 0)
     {
         if(res < 0)
@@ -18,7 +20,7 @@ int toSeven(int arg)
             res = arg % 7;
         }
         arg /= 7;
-        res = concatenate(res, arg % 7);
+        res = concatenate(res, arg % 7); 
     }
 
     while(res != 0)
@@ -27,25 +29,32 @@ int toSeven(int arg)
         reversedNumber = reversedNumber*10 + remainder;
         res /= 10;
     }
-
+    
     return reversedNumber;
 }
 int main()
 {
-    char c;
+    char c, d = 0;
+    cout<<"Enter char:";
     while(cin>>c)
     {
-        if(toSeven(c) % 2 == 0)
+        if(('0' <= c && c <= '9') || ('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
         {
-            cout<<"Chet!"<<endl;;
-            cout<<"Kod = "<<c<<endl;;
-            cout<<"Seven = "<<toSeven(c)<<endl;
+            c = ('0' <= c && c <= '9') ? c - '0' : c;
+            if(toSeven(c) % 2 == 0)
+            {
+                cout<<"Chet!"<<endl;;
+                cout<<"Kod = "<<(int)c<<endl;;
+                cout<<"Seven = "<<toSeven(c)<<endl;
+            }
+            else
+            {
+                cout<<"Ne Chet!"<<endl;;
+                cout<<"Kod = "<<(int)c<<endl;;
+                cout<<"Seven = "<<toSeven(c)<<endl;
+            }
+            cout<<endl;
         }
-        else
-        {
-            cout<<"Ne Chet!"<<endl;;
-            cout<<"Kod = "<<c<<endl;;
-            cout<<"Seven = "<<toSeven(c)<<endl;
-        }
+        cout<<"Enter char:";
     }
 }
